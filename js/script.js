@@ -262,20 +262,46 @@ function doRotate270Axy(){
             var g=DataIn[1];
             var b=DataIn[2];
             myContext5.fillStyle="rgba("+r+","+g+","+b+","+1+")";
-            myContext5.fillRect(255-ye,255-xe,1,1);
+            myContext5.fillRect(ye,255-xe,1,1);
         }
     }
 }
 function doRotate270Bxy(){
     for(let xe=0;xe<myWidth;xe++){
         for(let ye=0;ye<myHeight;ye++){
-            var pixel=myContext1.getImageData(xe,ye,1,1);
+            var pixel=myContext1.getImageData(255-xe,ye,1,1);
             var DataIn = pixel.data;
             var r=DataIn[0];
             var g=DataIn[1];
             var b=DataIn[2];
             myContext6.fillStyle="rgba("+r+","+g+","+b+","+1+")";
-            myContext6.fillRect(255-xe,ye,1,1);
+            myContext6.fillRect(ye,xe,1,1);
         }
     }
+}
+function doColorChannels(){
+    doClear();
+    var myImageDataOUT=myContext1.getImageData(0,0,myWidth,myHeight);
+    var myDataOUT = myImageDataOUT.data;
+    for(var i = 0;i<myDataOUT.length;i=i+4){
+        myDataOUT[i+1]=0;
+        myDataOUT[i+2]=0;
+    }
+    myContext4.putImageData(myImageDataOUT,0,0);
+
+    myImageDataOUT=myContext1.getImageData(0,0,myWidth,myHeight);
+    myDataOUT = myImageDataOUT.data;
+    for(var i = 0;i<myDataOUT.length;i=i+4){
+        myDataOUT[i]=0;
+        myDataOUT[i+2]=0;
+    }
+    myContext5.putImageData(myImageDataOUT,0,0);
+
+    myImageDataOUT=myContext1.getImageData(0,0,myWidth,myHeight);
+    myDataOUT = myImageDataOUT.data;
+    for(var i = 0;i<myDataOUT.length;i=i+4){
+        myDataOUT[i]=0;
+        myDataOUT[i+1]=0;
+    }
+    myContext6.putImageData(myImageDataOUT,0,0);
 }
