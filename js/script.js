@@ -194,22 +194,20 @@ function doDummy( text ) {
 }
 
 function doRotate90Axy(){
-    doClear();
     for(let xe=0;xe<myWidth;xe++){
        for(let ye=0;ye<myHeight;ye++){
-            var pixel=myContext1.getImageData(xe,ye,1,1);
+            var pixel=myContext1.getImageData(xe,255-ye,1,1);
             var DataIn = pixel.data;
             var r=DataIn[0];
             var g=DataIn[1];
             var b=DataIn[2];
             myContext2.fillStyle="rgba("+r+","+g+","+b+","+1+")";
-            myContext2.fillRect(255-ye,xe,1,1);
+            myContext2.fillRect(ye,xe,1,1);
         }
     }
 }
 
 function doRotate90AImageData(){
-    doClear();
     var myImageDataIN=myContext1.getImageData(0,0,myWidth,myHeight);
     var myImageDataOUT=myContext1.getImageData(0,0,myWidth,myHeight);
     var myDataIn = myImageDataIN.data;
@@ -226,4 +224,58 @@ function doRotate90AImageData(){
 
     }
     myContext2.putImageData(myImageDataOUT,0,0);
+}
+
+function doRotate90Bxy(){
+    for(let xe=0;xe<myWidth;xe++){
+        for(let ye=0;ye<myHeight;ye++){
+            var pixel=myContext1.getImageData(xe,255-ye,1,1);
+            var DataIn = pixel.data;
+            var r=DataIn[0];
+            var g=DataIn[1];
+            var b=DataIn[2];
+            myContext3.fillStyle="rgba("+r+","+g+","+b+","+1+")";
+            myContext3.fillRect(ye,xe,1,1);
+        }
+    }
+}
+
+function doRotate180Axy(){
+    for(let xe=0;xe<myWidth;xe++){
+        for(let ye=0;ye<myHeight;ye++){
+            var pixel=myContext1.getImageData(xe,ye,1,1);
+            var DataIn = pixel.data;
+            var r=DataIn[0];
+            var g=DataIn[1];
+            var b=DataIn[2];
+            myContext4.fillStyle="rgba("+r+","+g+","+b+","+1+")";
+            myContext4.fillRect(xe,255-ye,1,1);
+        }
+    }
+}
+function doRotate270Axy(){
+    for(let xe=0;xe<myWidth;xe++){
+        for(let ye=0;ye<myHeight;ye++){
+            var pixel=myContext1.getImageData(xe,ye,1,1);
+            var DataIn = pixel.data;
+            var r=DataIn[0];
+            var g=DataIn[1];
+            var b=DataIn[2];
+            myContext5.fillStyle="rgba("+r+","+g+","+b+","+1+")";
+            myContext5.fillRect(255-ye,255-xe,1,1);
+        }
+    }
+}
+function doRotate270Bxy(){
+    for(let xe=0;xe<myWidth;xe++){
+        for(let ye=0;ye<myHeight;ye++){
+            var pixel=myContext1.getImageData(xe,ye,1,1);
+            var DataIn = pixel.data;
+            var r=DataIn[0];
+            var g=DataIn[1];
+            var b=DataIn[2];
+            myContext6.fillStyle="rgba("+r+","+g+","+b+","+1+")";
+            myContext6.fillRect(255-xe,ye,1,1);
+        }
+    }
 }
