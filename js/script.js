@@ -305,3 +305,30 @@ function doColorChannels(){
     }
     myContext6.putImageData(myImageDataOUT,0,0);
 }
+
+function doGreyChannels(){
+doClear();
+    var myImageDataOUT=myContext1.getImageData(0,0,myWidth,myHeight);
+    var myDataOUT = myImageDataOUT.data;
+    for(var i=0;i<myDataOUT;i+=4){
+        myDataOUT[i+1]=myDataOUT[i];
+        myDataOUT[i+2]=myDataOUT[i];
+    }
+    myContext4.putImageData(myImageDataOUT,0,0);
+
+    myImageDataOUT=myContext1.getImageData(0,0,myWidth,myHeight);
+    myDataOUT = myImageDataOUT.data;
+    for(var i=0;i<myDataOUT;i+=4){
+        myDataOUT[i]=myDataOUT[i+1];
+        myDataOUT[i+2]=myDataOUT[i+1];
+    }
+    myContext5.putImageData(myImageDataOUT,0,0);
+
+    myImageDataOUT=myContext1.getImageData(0,0,myWidth,myHeight);
+    myDataOUT = myImageDataOUT.data;
+    for(var i=0;i<myDataOUT;i+=4){
+        myDataOUT[i]=myDataOUT[i+2];
+        myDataOUT[i+1]=myDataOUT[i+2];
+    }
+    myContext6.putImageData(myImageDataOUT,0,0);
+}
