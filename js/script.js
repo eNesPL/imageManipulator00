@@ -310,7 +310,7 @@ function doGreyChannels(){
 doClear();
     var myImageDataOUT=myContext1.getImageData(0,0,myWidth,myHeight);
     var myDataOUT = myImageDataOUT.data;
-    for(var i=0;i<myDataOUT;i+=4){
+    for(var i=0;i<myDataOUT.length;i+=4){
         myDataOUT[i+1]=myDataOUT[i];
         myDataOUT[i+2]=myDataOUT[i];
     }
@@ -318,7 +318,7 @@ doClear();
 
     myImageDataOUT=myContext1.getImageData(0,0,myWidth,myHeight);
     myDataOUT = myImageDataOUT.data;
-    for(var i=0;i<myDataOUT;i+=4){
+    for(var i=0;i<myDataOUT.length;i+=4){
         myDataOUT[i]=myDataOUT[i+1];
         myDataOUT[i+2]=myDataOUT[i+1];
     }
@@ -326,9 +326,80 @@ doClear();
 
     myImageDataOUT=myContext1.getImageData(0,0,myWidth,myHeight);
     myDataOUT = myImageDataOUT.data;
-    for(var i=0;i<myDataOUT;i+=4){
+    for(var i=0;i<myDataOUT.length;i+=4){
         myDataOUT[i]=myDataOUT[i+2];
         myDataOUT[i+1]=myDataOUT[i+2];
+    }
+    myContext6.putImageData(myImageDataOUT,0,0);
+}
+
+function doTwoChannels(){
+    doClear();
+    var myImageDataOUT=myContext1.getImageData(0,0,myWidth,myHeight);
+    var myDataOUT = myImageDataOUT.data;
+    for(var i=0;i<myDataOUT.length;i+=4){
+        myDataOUT[i]=0
+    }
+    myContext4.putImageData(myImageDataOUT,0,0);
+
+    myImageDataOUT=myContext1.getImageData(0,0,myWidth,myHeight);
+    myDataOUT = myImageDataOUT.data;
+    for(var i=0;i<myDataOUT.length;i+=4){
+        myDataOUT[i+1]=0;
+    }
+    myContext5.putImageData(myImageDataOUT,0,0);
+
+    myImageDataOUT=myContext1.getImageData(0,0,myWidth,myHeight);
+    myDataOUT = myImageDataOUT.data;
+    for(var i=0;i<myDataOUT.length;i+=4){
+        myDataOUT[i+2]=0;
+    }
+    myContext6.putImageData(myImageDataOUT,0,0);
+
+}
+function doChannelsCombination(){
+    doClear();
+    var myImageDataIN=myContext1.getImageData(0,0,myWidth,myHeight);
+    var myDataIN= myImageDataIN.data;
+    var myImageDataOUT=myContext1.getImageData(0,0,myWidth,myHeight);
+    var myDataOUT = myImageDataOUT.data;
+    for(var i=0;i<myDataOUT.length;i+=4){
+        myDataOUT[i+1]=myDataIN[i+2];
+        myDataOUT[i+2]=myDataIN[i+1];
+    }
+    myContext2.putImageData(myImageDataOUT,0,0);
+
+    myImageDataOUT=myContext1.getImageData(0,0,myWidth,myHeight);
+    myDataOUT = myImageDataOUT.data;
+    for(var i=0;i<myDataOUT.length;i+=4){
+        myDataOUT[i]=myDataIN[i+2];
+        myDataOUT[i+1]=myDataIN[i];
+        myDataOUT[i+2]=myDataIN[i+1];
+    }
+    myContext3.putImageData(myImageDataOUT,0,0);
+
+    myImageDataOUT=myContext1.getImageData(0,0,myWidth,myHeight);
+    myDataOUT = myImageDataOUT.data;
+    for(var i=0;i<myDataOUT.length;i+=4){
+        myDataOUT[i]=myDataIN[i+2];
+        myDataOUT[i+2]=myDataIN[i];
+    }
+    myContext4.putImageData(myImageDataOUT,0,0);
+
+    myImageDataOUT=myContext1.getImageData(0,0,myWidth,myHeight);
+    myDataOUT = myImageDataOUT.data;
+    for(var i=0;i<myDataOUT.length;i+=4){
+        myDataOUT[i]=myDataIN[i+1];
+        myDataOUT[i+1]=myDataIN[i+2];
+        myDataOUT[i+2]=myDataIN[i];
+    }
+    myContext5.putImageData(myImageDataOUT,0,0);
+
+    myImageDataOUT=myContext1.getImageData(0,0,myWidth,myHeight);
+    myDataOUT = myImageDataOUT.data;
+    for(var i=0;i<myDataOUT.length;i+=4){
+        myDataOUT[i]=myDataIN[i+1];
+        myDataOUT[i+1]=myDataIN[i];
     }
     myContext6.putImageData(myImageDataOUT,0,0);
 }
