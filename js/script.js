@@ -631,7 +631,16 @@ function doBasicAlgorithm(){
 
 
 }
+function doCumulativeAlgorithm(){
+    doClear();
+    doNTSCGray(myContext1,myContext2);
+    doDrawHistogram3(myContext2,myContext3,0);
+    doDrawHistogram3(myContext1,myContext4,1);
+    doDrawHistogram3(myContext1,myContext5,2);
+    doDrawHistogram3(myContext1,myContext6,3);
 
+
+}
 function doDrawHistogram(contextIN,contextOUT,channel){
     var histogram = [];
     for(let h=0;h<256;h++){
@@ -657,8 +666,8 @@ function doDrawHistogram(contextIN,contextOUT,channel){
     for(let i=0;i<myDataIN.length;i+=4){
         switch(channel){
             case 0:
-                var gray = Math.floor((77*myDataIN[i]+150*myDataIN[i+1]+29*myDataIN[i+2]));
-                histogram[gray]+=1;
+                var gray = Math.floor((77*myDataIN[i]+150*myDataIN[i+1]+29*myDataIN[i+2])>>8);
+                    histogram[gray]+=1;
                 break;
             case 1:
                 histogram[myDataIN[i]]+=1;
@@ -757,7 +766,7 @@ function doDrawHistogram2(contextIN,contextOUT,channel){
     for(let i=0;i<myDataIN.length;i+=4){
         switch(channel){
             case 0:
-                var gray = Math.floor((77*myDataIN[i]+150*myDataIN[i+1]+29*myDataIN[i+2]));
+                var gray = Math.floor((77*myDataIN[i]+150*myDataIN[i+1]+29*myDataIN[i+2])>>8);
                 histogram[gray]+=1;
                 break;
             case 1:
